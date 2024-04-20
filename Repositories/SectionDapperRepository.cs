@@ -15,6 +15,6 @@ public class SectionDapperRepository : BaseSqlRepository
 
     public async Task<IEnumerable<Section>> GetSectionsNamesAsync() {
         var connection = new SqlConnection(connectionString);
-        return await connection.QueryAsync<Section>("select Name from Sections");
+        return await connection.QueryAsync<Section>("select [Name] from Sections");
     }
 }
