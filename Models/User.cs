@@ -6,4 +6,9 @@ public class User
     public string? Nickname { get; set;}
     public string? Password { get; set;}
     public DateTime? CreationDate { get; set;}
+
+    public override string ToString()
+    {
+        return this.Nickname;
+    }
 }

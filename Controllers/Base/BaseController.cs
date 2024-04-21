@@ -1,6 +1,7 @@
 using System.Net;
 using System.Reflection;
 using System.Text;
+using Upvote.Models;
 
 namespace UpVote.Controllers.Base;
 
@@ -54,7 +55,17 @@ public class BaseController
                     if (itemPropertyInfo.Name == "Id" || itemPropertyInfo.Name == "Password")
                         continue;
 
-                    contentsSb.Append($"<label>{itemPropertyInfo.Name}:</label> <input type=\"text\" readonly value=\"{itemPropertyInfo.GetValue(viewValue.Value)}\"></input>");
+                    if (itemPropertyInfo.GetValue(viewValue.Value).GetType() != typeof(string) && itemPropertyInfo.GetValue(viewValue.Value).GetType() != typeof(int))
+                    {
+                        var tmp = itemPropertyInfo.GetValue(viewValue.Value) as List<User>;
+                        string result = String.Join<User>(',', tmp.ToArray());
+                        contentsSb.Append($"<label>{itemPropertyInfo.Name}:</label> <input type=\"text\" readonly value=\"{result}\"></input>");
+                    }
+                    else
+                    {
+                        contentsSb.Append($"<label>{itemPropertyInfo.Name}:</label> <input type=\"text\" readonly value=\"{itemPropertyInfo.GetValue(viewValue.Value)}\"></input>");
+                    }
+
                 }
                 contentsSb.Append("</div>");
             }

@@ -13,4 +13,10 @@ public class UserDapperRepository : BaseSqlRepository
         var connection = new SqlConnection(connectionString);
         return await connection.QueryAsync<User>("select * from Users");
     }
+
+    public async Task<User> GetUserByIdAsync(int id) {
+        var connection = new SqlConnection(connectionString);
+        return await connection.QueryFirstAsync<User>(@$"select * from Users as u
+                                                    where u.[Id] = {id}");
+    }
 }
