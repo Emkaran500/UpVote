@@ -109,7 +109,7 @@ while (true)
         var methodNameToCall = enpointItems.Last().ToLower();
         await controller.GetStyle(methodNameToCall);
     }
-    else
+    else if (controllerObj is BaseController)
     {
         var controller = (controllerObj as BaseController)!;
         controller.Response = context.Response;

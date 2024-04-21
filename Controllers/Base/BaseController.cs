@@ -42,8 +42,8 @@ public class BaseController
             htmlSb.Append(await File.ReadAllTextAsync(path));
         }
 
-        Type itemType = typeof(T);
-        var properties = itemType.GetProperties();
+        Type? itemType = viewValues?.FirstOrDefault().Value.GetType();
+        var properties = itemType?.GetProperties();
 
         if (viewValues is not null)
         {
@@ -55,10 +55,12 @@ public class BaseController
                     if (itemPropertyInfo.Name == "Id" || itemPropertyInfo.Name == "Password")
                         continue;
 
-                    if (itemPropertyInfo.GetValue(viewValue.Value).GetType() != typeof(string) && itemPropertyInfo.GetValue(viewValue.Value).GetType() != typeof(int))
+                    if (itemPropertyInfo.GetValue(viewValue.Value).GetType() != typeof(string)
+                       && itemPropertyInfo.GetValue(viewValue.Value).GetType() != typeof(int)
+                       && itemPropertyInfo.GetValue(viewValue.Value).GetType() != typeof(DateTime))
                     {
-                        var tmp = itemPropertyInfo.GetValue(viewValue.Value) as List<User>;
-                        string result = String.Join<User>(',', tmp.ToArray());
+                        var tmp = itemPropertyInfo.GetValue(viewValue.Value) as List<T>;
+                        string result = String.Join<T>(',', tmp.ToArray());
                         contentsSb.Append($"<label>{itemPropertyInfo.Name}:</label> <input type=\"text\" readonly value=\"{result}\"></input>");
                     }
                     else

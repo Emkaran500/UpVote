@@ -29,7 +29,7 @@ public class DiscussionsController : BaseController
                 discussionInfoPairs.Add(new KeyValuePair<string?, object>(discussion.Id.ToString(), discussion));
             }
             Dictionary<string?, object> discussionsDictionary = new Dictionary<string?, object>(discussionInfoPairs);
-            await WriteViewAsync(discussions.FirstOrDefault(), discussionsDictionary, "index", "discussions");
+            await WriteViewAsync(new User(), discussionsDictionary, "index", "discussions");
         }
         else {
             await new ErrorController().NotFound(nameof(discussions));

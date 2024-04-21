@@ -12,4 +12,10 @@ public class DiscussionDapperRepository : BaseSqlRepository
         var connection = new SqlConnection(connectionString);
         return await connection.QueryAsync<Discussion>("select * from Discussions");
     }
+
+    public async Task<Discussion> GetDiscussionByIdAsync(int id) {
+        var connection = new SqlConnection(connectionString);
+        return await connection.QueryFirstAsync<Discussion>(@$"select * from Discussions as d
+                                                    where d.[Id] = {id}");
+    }
 }
