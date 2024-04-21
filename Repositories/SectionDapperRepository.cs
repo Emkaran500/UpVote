@@ -12,9 +12,4 @@ public class SectionDapperRepository : BaseSqlRepository
         var connection = new SqlConnection(connectionString);
         return await connection.QueryAsync<Section>("select * from Sections");
     }
-
-    public async Task<IEnumerable<Section>> GetSectionsNamesAsync() {
-        var connection = new SqlConnection(connectionString);
-        return await connection.QueryAsync<Section>("select [Name] from Sections");
-    }
 }

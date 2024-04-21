@@ -102,23 +102,28 @@ while (true)
 
     var controllerObj = Activator.CreateInstance(controllerType);
 
-    
-    if (controllerObj is not BaseController)
+    if (controllerObj is StylesController)
     {
-        continue;
-    }
-    var controller = (controllerObj as BaseController)!;
-    controller.Response = context.Response;
-    controller.Request = context.Request;
-
-    if (enpointItems.Length == 1)
-    {
-        await CallMethodAsync(controller, "index", context.Request.HttpMethod);
+        var controller = (controllerObj as StylesController)!;
+        controller.Response = context.Response;
+        var methodNameToCall = enpointItems.Last().ToLower();
+        await controller.GetStyle(methodNameToCall);
     }
     else
     {
-        var methodNameToCall = enpointItems[1].ToLower();
-        await CallMethodAsync(controller, methodNameToCall, context.Request.HttpMethod);
+        var controller = (controllerObj as BaseController)!;
+        controller.Response = context.Response;
+        controller.Request = context.Request;
+
+        if (enpointItems.Length == 1)
+        {
+            await CallMethodAsync(controller, "index", context.Request.HttpMethod);
+        }
+        else
+        {
+            var methodNameToCall = enpointItems[1].ToLower();
+            await CallMethodAsync(controller, methodNameToCall, context.Request.HttpMethod);
+        }
     }
 
     context.Response.Close();

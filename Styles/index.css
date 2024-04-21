@@ -32,3 +32,46 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 }
+
+.div-body
+{
+    background-color: linen;
+}
+
+.div-header
+{
+    width: 1110px;
+    margin: 0px auto;
+    padding: 15px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.div-logo
+{
+    padding-left: 40px;
+    background-image: url("../Imgs/icon.png");
+    background-size: contain;
+    background-position: left;
+    background-repeat: no-repeat;
+    font-family: 'OpenSans-Medium', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.a-logo
+{
+    text-decoration: none;
+}
+
+.div-users
+{
+    font-family: 'OpenSans-Medium', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.a-users
+{
+    text-decoration: none;
+}

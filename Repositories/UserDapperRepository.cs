@@ -13,9 +13,4 @@ public class UserDapperRepository : BaseSqlRepository
         var connection = new SqlConnection(connectionString);
         return await connection.QueryAsync<User>("select * from Users");
     }
-
-    public async Task<IEnumerable<User>> GetUsersNamesAsync() {
-        var connection = new SqlConnection(connectionString);
-        return await connection.QueryAsync<User>("select [Name] from Users");
-    }
 }
