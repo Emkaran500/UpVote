@@ -52,8 +52,14 @@ public class BaseController
                 contentsSb.Append("<div>");
                 foreach (var itemPropertyInfo in properties)
                 {
-                    if (itemPropertyInfo.Name == "Id" || itemPropertyInfo.Name == "Password")
+                    if (itemPropertyInfo.Name == "Password")
                         continue;
+
+                    if (itemPropertyInfo.Name == "Id")
+                    {
+                        contentsSb.Append($"<div style=\"display: none\">{itemPropertyInfo.GetValue(viewValue.Value)}</div>");
+                        continue;
+                    }
 
                     if (itemPropertyInfo.GetValue(viewValue.Value).GetType() != typeof(string)
                        && itemPropertyInfo.GetValue(viewValue.Value).GetType() != typeof(int)

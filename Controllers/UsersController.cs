@@ -4,6 +4,7 @@ using UpVote.Controllers.Base;
 using UpVote.Repositories;
 using UpVote.HttpAttributes;
 using Upvote.Models;
+using System.Net.Sockets;
 
 public class UsersController : BaseController
 {
@@ -24,6 +25,38 @@ public class UsersController : BaseController
         }
         else {
             await new ErrorController().NotFound(nameof(users));
+        }
+    }
+
+    [HttpPut(ActionName = "Update")]
+    public async Task UpdateUserNickname(int id, string? name)
+    {
+        if (await this.userSqlRepository.GetUserByIdAsync(id) != null)
+        {
+            await this.userSqlRepository.UpdateUserNameById(id, name);
+        }
+        else {
+            await new ErrorController().NotFound($"User Id: {id}");
+        }
+    }
+
+    [HttpPost(ActionName = "Create")]
+    public async Task CreateUser(string? nickname, string? password, DateTime? creationDate)
+    {
+        if (!string.IsNullOrWhiteSpace(nickname)
+         && !string.IsNullOrWhiteSpace(password)
+         && creationDate is not null)
+        {
+            this.userSqlRepository.CreateUser(nickname, password, creationDate.Value);
+        }
+    }
+
+    [HttpDelete(ActionName = "Delete")]
+    public async Task DeleteUser(int id)
+    {
+        if (await this.userSqlRepository.GetUserByIdAsync(id) != null)
+        {
+            await this.userSqlRepository.DeleteUserById(id);
         }
     }
 }
