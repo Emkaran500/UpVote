@@ -1,7 +1,7 @@
 [
     {
         "Id": 1,
-        "Name": "Why my dog is barking at night?",
+        "Name": "Why my dog is barking at night",
         "Users":
         [
             {
@@ -76,7 +76,7 @@
     },
     {
         "Id": 4,
-        "Name": "Why do pranks exist?",
+        "Name": "Why do pranks exist",
         "Users": []
     },
     {

@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "Create Discussion";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Discussions</h1>
+</div>
+
+<form action="/Discussion/Create" method="post">
+  <div class="form-group">
+    <label for="descriptionName" style="margin-bottom: 10px;">Input name of the discussion here: </label>
+    <input type="text" class="form-control w-25" id="descriptionName" name="Name" placeholder="Enter name" style="margin-bottom: 10px;">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

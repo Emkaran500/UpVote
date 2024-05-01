@@ -1,6 +1,4 @@
-﻿@using UpVote
-@using UpVote.Models
-@model IEnumerable<Discussion>?
+﻿@model IEnumerable<Discussion>?
 
 @{
     ViewData["Title"] = "Discussions";
@@ -11,7 +9,7 @@
 </div>
 
 <div>
-    <a class="nav-link text-dark border border-info rounded shadow px-2" style="width: fit-content; padding: 0px; font-size: 20px;" href="">Create new discussion</a>
+    <a href="Discussion/CreationPage" class="nav-link text-dark border border-info rounded shadow px-2" style="width: fit-content; padding: 0px; font-size: 20px;">Create new discussion</a>
 </div>
 
 @if(Model == null || Model.Any() == false) {
@@ -24,7 +22,7 @@ else {
     {
         <div class="card my-3 shadow">
             <div class="card-body bg-primary text-white">
-                <h5 class="card-title">@discussion.Name</h5>
+                <a href="/Discussion/Get/@discussion.Name" class="link-light" style="font-size: 20px; font-weight: bold; text-decoration: none">@discussion.Name</a>
                 <div class="card w-25 p-1 bg-warning"><label style="font-weight: bold;">Participating users: </label>
                 @if (!discussion.Users.Any() || discussion.Users == null)
                 {

@@ -8,6 +8,7 @@ namespace UpVote.Controllers;
 
 public class DiscussionController : Controller
 {
+    [HttpGet]
     [Route("[controller]")]
     public async Task<IActionResult> Index()
     {
@@ -18,6 +19,7 @@ public class DiscussionController : Controller
         return base.View(discussions);
     }
 
+    [HttpGet]
     [ActionName("Get")]
     [Route("[controller]/[action]/{name}")]
     public async Task<IActionResult> GetByName(string name)
@@ -28,5 +30,38 @@ public class DiscussionController : Controller
         IEnumerable<Discussion> searchedDiscussionAsEnumerable = new Discussion[] {searchedDiscussion};
 
         return base.View("Index", searchedDiscussionAsEnumerable);
+    }
+
+    [HttpGet]
+    [ActionName("CreationPage")]
+    [Route("[controller]/[action]")]
+    public IActionResult Create()
+    {
+        return base.View("Create");
+    }
+
+    [HttpPost]
+    [ActionName("Create")]
+    [Route("[controller]/[action]")]
+    public async Task<IActionResult> CreateNewDiscussion(Discussion newDiscussion)
+    {
+        var discussionsJson = await System.IO.File.ReadAllTextAsync("Assets/discussions.json");
+
+        var discussions = JsonSerializer.Deserialize<List<Discussion>>(discussionsJson, new JsonSerializerOptions {
+            PropertyNameCaseInsensitive = true,
+        });
+
+        var maxId = discussions.Max(discussion => discussion.Id);
+        newDiscussion.Id = maxId + 1;
+
+        discussions?.Add(newDiscussion);
+
+        var newDiscussionsJson = JsonSerializer.Serialize<List<Discussion>>(discussions, new JsonSerializerOptions {
+            PropertyNameCaseInsensitive = true,
+        });
+
+        await System.IO.File.WriteAllTextAsync("Assets/discussions.json", newDiscussionsJson);
+
+        return base.RedirectToAction(actionName: "Index");
     }
 }
