@@ -6,19 +6,19 @@
         [
             {
                 "Id": 1,
-                "Name": "_Noob_",
+                "Nickname": "_Noob_",
                 "Password": "noobkiller",
                 "CreationDate": "2015-05-05"
             },
             {
                 "Id": 2,
-                "Name": "_Nobo_",
+                "Nickname": "_Nobo_",
                 "Password": "noobkiller",
                 "CreationDate": "2013-04-22"
             },
             {
                 "Id": 3,
-                "Name": "_Nobb_",
+                "Nickname": "_Nobb_",
                 "Password": "noobkill",
                 "CreationDate": "2018-10-18"
             } 
@@ -31,19 +31,19 @@
         [
             {
                 "Id": 2,
-                "Name": "_Nobo_",
+                "Nickname": "_Nobo_",
                 "Password": "noobkiller",
                 "CreationDate": "2013-04-22"
             },
             {
                 "Id": 4,
-                "Name": "_Nbob_",
+                "Nickname": "_Nbob_",
                 "Password": "noobkil",
                 "CreationDate": "2012-12-31"
             },
             {
                 "Id": 5,
-                "Name": "_Nbbo_",
+                "Nickname": "_Nbbo_",
                 "Password": "noobki",
                 "CreationDate": "2016-01-01"
             }
@@ -56,19 +56,19 @@
         [
             {
                 "Id": 1,
-                "Name": "_Noob_",
+                "Nickname": "_Noob_",
                 "Password": "noobkiller",
                 "CreationDate": "2015-05-05"
             },
             {
                 "Id": 2,
-                "Name": "_Nobo_",
+                "Nickname": "_Nobo_",
                 "Password": "noobkiller",
                 "CreationDate": "2013-04-22"
             },
             {
                 "Id": 5,
-                "Name": "_Nbbo_",
+                "Nickname": "_Nbbo_",
                 "Password": "noobki",
                 "CreationDate": "2016-01-01"
             }

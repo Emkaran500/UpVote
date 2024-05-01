@@ -1,16 +1,16 @@
 {
   "Files": [
     {
-      "Id": "C:\\Степит\\UpVote\\MVCASP\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\MVCASP.bundle.scp.css",
-      "PackagePath": "staticwebassets\\MVCASP.bundle.scp.css"
+      "Id": "C:\\Степит\\UpVote\\MVCASP\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\UpVote.bundle.scp.css",
+      "PackagePath": "staticwebassets\\UpVote.bundle.scp.css"
     },
     {
       "Id": "C:\\Степит\\UpVote\\MVCASP\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Степит\\UpVote\\MVCASP\\wwwroot\\favicon.ico",
-      "PackagePath": "staticwebassets\\favicon.ico"
+      "Id": "C:\\Степит\\UpVote\\MVCASP\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
     },
     {
       "Id": "C:\\Степит\\UpVote\\MVCASP\\wwwroot\\js\\site.js",
@@ -245,20 +245,20 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.MVCASP.Microsoft.AspNetCore.StaticWebAssets.props",
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.UpVote.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
     {
-      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.MVCASP.props",
-      "PackagePath": "build\\MVCASP.props"
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.UpVote.props",
+      "PackagePath": "build\\UpVote.props"
     },
     {
-      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.MVCASP.props",
-      "PackagePath": "buildMultiTargeting\\MVCASP.props"
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.UpVote.props",
+      "PackagePath": "buildMultiTargeting\\UpVote.props"
     },
     {
-      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.MVCASP.props",
-      "PackagePath": "buildTransitive\\MVCASP.props"
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.UpVote.props",
+      "PackagePath": "buildTransitive\\UpVote.props"
     }
   ],
   "ElementsToRemove": []

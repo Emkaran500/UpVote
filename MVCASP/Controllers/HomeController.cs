@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using MVCASP.Models;
+using UpVote.Models;
 
-namespace MVCASP.Controllers;
+namespace UpVote.Controllers;
 
 public class HomeController : Controller
 {

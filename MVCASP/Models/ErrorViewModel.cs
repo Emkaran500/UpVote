@@ -1,4 +1,4 @@
-namespace MVCASP.Models;
+namespace UpVote.Models;
 
 public class ErrorViewModel
 {

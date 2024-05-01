@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Степит\\UpVote\\MVCASP\\MVCASP.csproj",
-      "projectName": "MVCASP",
-      "projectPath": "C:\\Степит\\UpVote\\MVCASP\\MVCASP.csproj",
+      "projectUniqueName": "C:\\Степит\\UpVote\\MVCASP\\UpVote.csproj",
+      "projectName": "UpVote",
+      "projectPath": "C:\\Степит\\UpVote\\MVCASP\\UpVote.csproj",
       "packagesPath": "C:\\Users\\KIRISA\\.nuget\\packages\\",
       "outputPath": "C:\\Степит\\UpVote\\MVCASP\\obj\\",
       "projectStyle": "PackageReference",
