@@ -2,65 +2,50 @@ using System.Diagnostics;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using UpVote.Models;
+using UpVote.Repositories.Base;
+using UpVote.Services.Base;
 
 namespace UpVote.Controllers;
 
 public class DiscussionController : Controller
 {
-    [HttpGet]
-    [Route("[controller]")]
+    private readonly IDiscussionService discussionService;
+    private readonly IDiscussionRepository discussionRepository;
+
+    public DiscussionController(IDiscussionService productService, IDiscussionRepository productRepository)
+    {
+        this.discussionRepository = productRepository;
+        this.discussionService = productService;
+    }
+
+    [HttpGet("/[controller]")]
     public async Task<IActionResult> Index()
     {
-        var discussionsJson = await System.IO.File.ReadAllTextAsync("Assets/discussions.json");
+        var discussion = await discussionRepository.GetAllAsync();
 
-        var discussions = JsonSerializer.Deserialize<IEnumerable<Discussion>>(discussionsJson);
-
-        return base.View(discussions);
+        return base.View(discussion);
     }
 
-    [HttpGet]
     [ActionName("Get")]
-    [Route("[controller]/[action]/{id}")]
+    [HttpGet("[controller]/[action]/{id}")]
     public async Task<IActionResult> GetById(int id)
     {
-        var discussionsJson = await System.IO.File.ReadAllTextAsync("Assets/discussions.json");
-        var discussions = JsonSerializer.Deserialize<IEnumerable<Discussion>>(discussionsJson);
-        var searchedDiscussion = discussions?.FirstOrDefault((discussion) => discussion?.Id == id, null);
-        IEnumerable<Discussion> searchedDiscussionAsEnumerable = new Discussion[] {searchedDiscussion};
+        var discussion = await discussionRepository.GetByIdAsync(id);
 
-        return base.View("Index", searchedDiscussionAsEnumerable);
+        return base.View("Index", discussion);
     }
 
     [HttpGet]
-    [ActionName("CreationPage")]
-    [Route("[controller]/[action]")]
     public IActionResult Create()
     {
-        return base.View("Create");
+        return base.View();
     }
 
-    [HttpPost]
-    [ActionName("Create")]
-    [Route("[controller]/[action]")]
-    public async Task<IActionResult> CreateNewDiscussion(Discussion newDiscussion)
+    [HttpPost("[controller]/[action]")]
+    public async Task<IActionResult> Create(Discussion newDiscussion)
     {
-        var discussionsJson = await System.IO.File.ReadAllTextAsync("Assets/discussions.json");
+        await discussionService.CreateNewDiscussionAsync(newDiscussion);
 
-        var discussions = JsonSerializer.Deserialize<List<Discussion>>(discussionsJson, new JsonSerializerOptions {
-            PropertyNameCaseInsensitive = true,
-        });
-
-        var maxId = discussions.Max(discussion => discussion.Id);
-        newDiscussion.Id = maxId + 1;
-
-        discussions?.Add(newDiscussion);
-
-        var newDiscussionsJson = JsonSerializer.Serialize<List<Discussion>>(discussions, new JsonSerializerOptions {
-            PropertyNameCaseInsensitive = true,
-        });
-
-        await System.IO.File.WriteAllTextAsync("Assets/discussions.json", newDiscussionsJson);
-
-        return base.RedirectToAction(actionName: "Index");
+        return base.RedirectToAction("Index");
     }
 }

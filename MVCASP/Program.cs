@@ -1,7 +1,16 @@
+using UpVote.Repositories;
+using UpVote.Models;
+using UpVote.Repositories.Base;
+using UpVote.Services.Base;
+using UpVote.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<IDiscussionRepository, DiscussionJsonRepository>();
+builder.Services.AddScoped<IDiscussionService, DiscussionService>();
 
 var app = builder.Build();
 

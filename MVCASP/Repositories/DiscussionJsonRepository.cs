@@ -1,4 +1,4 @@
-namespace DependencyInjectionApp.Repositories;
+namespace UpVote.Repositories;
 
 using System.Collections.Generic;
 using System.Text.Json;
@@ -15,6 +15,7 @@ public class DiscussionJsonRepository : IDiscussionRepository
         var json = await File.ReadAllTextAsync(discussionsFilePath);
         var allDiscussions = JsonSerializer.Deserialize<IEnumerable<Discussion>>(json) ?? Enumerable.Empty<Discussion>();
 
+        newDiscussion.Id = allDiscussions.Max(discussion => discussion.Id) + 1;
         var resultJson = JsonSerializer.Serialize(allDiscussions.Append(newDiscussion));
 
         await File.WriteAllTextAsync(discussionsFilePath, resultJson);
