@@ -2,7 +2,6 @@ using System.Diagnostics;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using UpVote.Models;
-using UpVote.Models;
 
 namespace UpVote.Controllers;
 
@@ -21,12 +20,12 @@ public class DiscussionController : Controller
 
     [HttpGet]
     [ActionName("Get")]
-    [Route("[controller]/[action]/{name}")]
-    public async Task<IActionResult> GetByName(string name)
+    [Route("[controller]/[action]/{id}")]
+    public async Task<IActionResult> GetById(int id)
     {
         var discussionsJson = await System.IO.File.ReadAllTextAsync("Assets/discussions.json");
         var discussions = JsonSerializer.Deserialize<IEnumerable<Discussion>>(discussionsJson);
-        var searchedDiscussion = discussions?.FirstOrDefault((discussion) => discussion?.Name == name, null);
+        var searchedDiscussion = discussions?.FirstOrDefault((discussion) => discussion?.Id == id, null);
         IEnumerable<Discussion> searchedDiscussionAsEnumerable = new Discussion[] {searchedDiscussion};
 
         return base.View("Index", searchedDiscussionAsEnumerable);
