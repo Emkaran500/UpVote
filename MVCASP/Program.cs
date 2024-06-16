@@ -3,11 +3,17 @@ using UpVote.Models;
 using UpVote.Repositories.Base;
 using UpVote.Services.Base;
 using UpVote.Services;
+using ConfigurationApp.Options.Connections;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var msSqlConnectionSection = builder.Configuration.GetSection("Connections")
+    .GetSection("MsSqlDb");
+
+builder.Services.Configure<MsSqlConnectionOptions>(msSqlConnectionSection);
 
 builder.Services.AddTransient<IDiscussionRepository, DiscussionJsonRepository>();
 builder.Services.AddScoped<IDiscussionService, DiscussionService>();

@@ -29,3 +29,13 @@ C:\Степит\UpVote\MVCASP\obj\Debug\net7.0\refint\UpVote.dll
 C:\Степит\UpVote\MVCASP\obj\Debug\net7.0\UpVote.pdb
 C:\Степит\UpVote\MVCASP\obj\Debug\net7.0\UpVote.genruntimeconfig.cache
 C:\Степит\UpVote\MVCASP\obj\Debug\net7.0\ref\UpVote.dll
+C:\Степит\UpVote\MVCASP\bin\Debug\net7.0\Dapper.dll
+C:\Степит\UpVote\MVCASP\bin\Debug\net7.0\System.Data.SqlClient.dll
+C:\Степит\UpVote\MVCASP\bin\Debug\net7.0\runtimes\win-arm64\native\sni.dll
+C:\Степит\UpVote\MVCASP\bin\Debug\net7.0\runtimes\win-x64\native\sni.dll
+C:\Степит\UpVote\MVCASP\bin\Debug\net7.0\runtimes\win-x86\native\sni.dll
+C:\Степит\UpVote\MVCASP\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Степит\UpVote\MVCASP\bin\Debug\net7.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Степит\UpVote\MVCASP\obj\Debug\net7.0\UpVote.csproj.AssemblyReference.cache
+C:\Степит\UpVote\MVCASP\obj\Debug\net7.0\UpVote.sourcelink.json
+C:\Степит\UpVote\MVCASP\obj\Debug\net7.0\UpVote.csproj.Up2Date

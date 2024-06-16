@@ -1,3 +1,5 @@
+#pragma warning disable CS8601
+
 namespace UpVote.Repositories;
 
 using System.Collections.Generic;

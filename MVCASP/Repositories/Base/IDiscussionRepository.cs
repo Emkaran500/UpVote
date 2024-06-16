@@ -7,8 +7,8 @@ public interface IDiscussionRepository :
                         IGetByIdAsync<Discussion>,
                         ICreateAsync<Discussion> {}
 
-public interface IDiscussionRepository<TProduct> : 
-                        IGetAllAsync<TProduct>,
-                        IGetByIdAsync<Discussion>,
-                        ICreateAsync<TProduct>
-                                where TProduct : Discussion {}
+public interface IDiscussionRepository<T> : 
+                        IGetAllAsync<T>,
+                        IGetByIdAsync<T>,
+                        ICreateAsync<T>
+                                where T : Discussion {}
