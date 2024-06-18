@@ -12,10 +12,10 @@ public class DiscussionController : Controller
     private readonly IDiscussionService discussionService;
     private readonly IDiscussionRepository discussionRepository;
 
-    public DiscussionController(IDiscussionService productService, IDiscussionRepository productRepository)
+    public DiscussionController(IDiscussionService discussionService, IDiscussionRepository discussionRepository)
     {
-        this.discussionRepository = productRepository;
-        this.discussionService = productService;
+        this.discussionRepository = discussionRepository;
+        this.discussionService = discussionService;
     }
 
     [HttpGet("/[controller]")]

@@ -1,9 +1,12 @@
 namespace UpVote.Repositories;
 
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using ConfigurationApp.Options.Connections;
+using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using UpVote.Models;
@@ -18,28 +21,65 @@ public class SectionDapperRepository : ISectionRepository
         this.connectionString = msSqlConnectionOptions.Value.ConnectionString;
     }
 
-    public Task CreateAsync(Section instance)
+    public async Task CreateAsync(Section? section)
     {
-        throw new NotImplementedException();
+        using var connection = new SqlConnection(this.connectionString);
+        var format = "yyyy-MM-dd";
+        section.CreationDate = DateTime.Now;
+        var stringDate = DateTime.Now.Date.ToString(format);
+
+        await connection.ExecuteAsync($"Insert into Sections([Name], [CreationDate]) Values ('{section.Name ?? null}', '{stringDate}')");
     }
 
-    public Task DeleteAsync(int? id)
+    public async Task DeleteAsync(int? id)
     {
-        throw new NotImplementedException();
+        using var connection = new SqlConnection(this.connectionString);
+
+        var sectionIds = await connection.QueryAsync<int>("Select [Id] From Sections");
+
+        var containsId = sectionIds.Contains(id.Value);
+
+        if (containsId)
+        {
+            await connection.ExecuteAsync($"Delete from Sections Where Sections.[Id] = {id}");
+        }
     }
 
-    public Task<IEnumerable<Section>?> GetAllAsync()
+    public async Task<IEnumerable<Section>?> GetAllAsync()
     {
-        throw new NotImplementedException();
+        using var connection = new SqlConnection(this.connectionString);
+
+        return await connection.QueryAsync<Section>("Select * from Sections");
     }
 
-    public Task<IEnumerable<Section>?> GetByIdAsync(int id)
+    public async Task<IEnumerable<Section>?> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        using var connection = new SqlConnection(this.connectionString);
+
+        return await connection.QueryAsync<Section>($"Select * from Sections Where Sections.[Id] = {id}");
     }
 
-    public Task UpdateAsync(int? id, Section? section)
+    public async Task<long> UpdateAsync(Section? section)
     {
-        throw new NotImplementedException();
+        using var connection = new SqlConnection(this.connectionString);
+        StringBuilder sql = new StringBuilder();
+
+        ArgumentNullException.ThrowIfNull(section);
+
+        sql.Append($"Update {section.GetType().Name}s ");
+
+        var searchedSection = connection.QueryFirst<Section>($"Select * from Sections Where Sections.[Id] = {section?.Id ?? null}");
+
+        if (searchedSection != null && searchedSection.Name != section.Name && !string.IsNullOrWhiteSpace(section.Name))
+        {
+            searchedSection.Name = section.Name;
+            sql.Append($"Set [{nameof(section.Name)}] = '{section.Name}' ");
+        }
+
+        sql.Append($"Where [{nameof(section.Id)}] = {section.Id} ");
+
+        System.Console.WriteLine(sql.ToString());
+
+        return await connection.ExecuteAsync(sql.ToString());
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DLXtOSA/ElU=",
+  "dgSpecHash": "rLL5gbSYhSc=",
   "success": true,
-  "projectFilePath": "C:\\Степит\\UpVote\\MVCASP\\UpVote.csproj",
+  "projectFilePath": "c:\\Степит\\UpVote\\MVCASP\\UpVote.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\KIRISA\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
     "C:\\Users\\KIRISA\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",

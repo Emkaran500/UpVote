@@ -9,7 +9,7 @@ public class MsSqlConnectionOptions : IConnectionOptions
     public string? Server { get; set; }
     public string? UserId { get; set; }
     public string? Password { get; set; }
-    public string? TrustServerCertificate { get; set; }
+    public string? Trusted_Connection { get; set; }
 
     public string ConnectionString {
         get {
@@ -22,14 +22,14 @@ public class MsSqlConnectionOptions : IConnectionOptions
             {
                 connectionString.Append($"Database={this.Database};Server={this.Server};User Id={this.UserId};Password={this.Password};");
 
-                if(string.IsNullOrWhiteSpace(this.TrustServerCertificate) == false)
+                if(string.IsNullOrWhiteSpace(this.Trusted_Connection) == false)
                 {
-                    connectionString.Append($"TrustServerCertificate={this.TrustServerCertificate};");
+                    connectionString.Append($"Trusted_Connection={this.Trusted_Connection};");
                 }
             }
-            else if (string.IsNullOrWhiteSpace(this.TrustServerCertificate) == false)
+            else if (string.IsNullOrWhiteSpace(this.Trusted_Connection) == false)
             {
-                connectionString.Append($"Database={this.Database};Server={this.Server};TrustServerCertificate={this.TrustServerCertificate};");
+                connectionString.Append($"Database={this.Database};Server={this.Server};Trusted_Connection={this.Trusted_Connection};");
             }
             else
             {

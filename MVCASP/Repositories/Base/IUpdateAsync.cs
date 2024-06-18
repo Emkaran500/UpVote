@@ -2,7 +2,7 @@ using UpVote.Models;
 
 namespace UpVote.Repositories.Base;
 
-public interface IUpdateAsync<TEntity>
+public interface IUpdateAsync<T>
 {
-    Task UpdateAsync(int? id, TEntity? entity);
+    Task<long> UpdateAsync(T? entity);
 }

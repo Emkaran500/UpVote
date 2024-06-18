@@ -6,13 +6,13 @@ public interface ISectionRepository :
                         IGetAllAsync<Section>,
                         IGetByIdAsync<Section>,
                         ICreateAsync<Section>,
-                        IDeleteAsync<Section>,
+                        IDeleteAsync,
                         IUpdateAsync<Section> {}
 
 public interface ISectionRepository<T> : 
                         IGetAllAsync<T>,
                         IGetByIdAsync<T>,
                         ICreateAsync<T>,
-                        IDeleteAsync<T>,
+                        IDeleteAsync,
                         IUpdateAsync<T>
                                 where T : Section {}

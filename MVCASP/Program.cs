@@ -10,13 +10,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var msSqlConnectionSection = builder.Configuration.GetSection("Connections")
+var msSqlConnectionSection = builder.Configuration
+    .GetSection("Connections")
     .GetSection("MsSqlDb");
 
 builder.Services.Configure<MsSqlConnectionOptions>(msSqlConnectionSection);
 
 builder.Services.AddTransient<IDiscussionRepository, DiscussionJsonRepository>();
 builder.Services.AddScoped<IDiscussionService, DiscussionService>();
+builder.Services.AddTransient<ISectionRepository, SectionDapperRepository>();
+builder.Services.AddScoped<ISectionService, SectionService>();
 
 var app = builder.Build();
 

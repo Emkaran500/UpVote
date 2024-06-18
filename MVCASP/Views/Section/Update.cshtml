@@ -1,0 +1,18 @@
+@model Section?
+
+@{
+    ViewData["Title"] = "Edit Section";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Sections</h1>
+</div>
+
+<form asp-controller="Section" asp-action="Update" method="put">
+  <div class="form-group">
+    <input type="hidden" name="Id" value=@Model.Id style="display: none;">
+    <label for="descriptionName" style="margin-bottom: 10px;">Input new name of the section here: </label>
+    <input type="text" class="form-control w-25" id="descriptionName" name="Name" placeholder="Enter name" style="margin-bottom: 10px;">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
