@@ -1,0 +1,38 @@
+@model IEnumerable<Section>?
+
+@{
+    ViewData["Title"] = "Sections";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Sections</h1>
+</div>
+
+<div>
+    <a asp-route="CreateSection" class="nav-link text-dark border border-info rounded shadow px-2" style="width: fit-content; padding: 0px; font-size: 20px;">Create new section</a>
+</div>
+
+@if(Model == null || Model.Any() == false) {
+    <div class="alert alert-primary" role="alert">
+        There are no sections found!
+    </div>
+}
+else {
+    foreach (var Section in Model)
+    {
+        if (Model.Count() == 1)
+        {
+            <a asp-route="UpdateSection" asp-route-id=@Section.Id class="link-info" style="font-size: 20px; font-weight: bold; text-decoration: none; padding: 5px">Edit section</a>
+        }
+        <div class="card my-3 shadow">
+            <div class="card-body bg-primary text-white">
+                <a href="/Section/Get/@Section.Id" class="link-light" style="font-size: 20px; font-weight: bold; text-decoration: none">@Section.Name</a>
+            </div>
+        </div>
+        <hr/>
+        if (Model.Count() == 1)
+        {
+            <a asp-route="DeleteSection" asp-route-id=@Section.Id class="link-danger" style="font-size: 20px; font-weight: bold; text-decoration: none; padding: 5px">Delete section</a>
+        }
+    }
+}
