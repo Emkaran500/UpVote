@@ -1,0 +1,77 @@
+@font-face 
+{
+    font-family: 'OpenSans-Regular';
+    font-weight: 400px;
+    src: url('Fonts/OpenSans-Regular.ttf')  format('truetype')
+}
+
+@font-face 
+{
+    font-family: 'OpenSans-Medium';
+    font-weight: 500px;
+    src: url('Fonts/OpenSans-Medium.ttf')  format('truetype')
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	font-family: 'OpenSans-Regular', sans-serif;
+	font-weight: 500;
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	font: inherit;
+}
+
+.div-body
+{
+    background-color: linen;
+}
+
+.div-header
+{
+    width: 1110px;
+    margin: 0px auto;
+    padding: 15px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.div-logo
+{
+    padding-left: 40px;
+    background-image: url("../Imgs/icon.png");
+    background-size: contain;
+    background-position: left;
+    background-repeat: no-repeat;
+    font-family: 'OpenSans-Medium', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.a-logo
+{
+    text-decoration: none;
+}
+
+.div-all
+{
+    font-family: 'OpenSans-Medium', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.a-all
+{
+    text-decoration: none;
+}
