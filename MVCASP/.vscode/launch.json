@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "C#: UpVote [Default Configuration]",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}\\UpVote.csproj"
+        }
+    ]
+}
