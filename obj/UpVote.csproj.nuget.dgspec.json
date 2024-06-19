@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Степит\\UpVote\\UpVote.csproj": {}
+    "C:\\Степит\\UpVote\\UpVote.csproj": {}
   },
   "projects": {
-    "c:\\Степит\\UpVote\\UpVote.csproj": {
+    "C:\\Степит\\UpVote\\UpVote.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Степит\\UpVote\\UpVote.csproj",
+        "projectUniqueName": "C:\\Степит\\UpVote\\UpVote.csproj",
         "projectName": "UpVote",
-        "projectPath": "c:\\Степит\\UpVote\\UpVote.csproj",
+        "projectPath": "C:\\Степит\\UpVote\\UpVote.csproj",
         "packagesPath": "C:\\Users\\KIRISA\\.nuget\\packages\\",
-        "outputPath": "c:\\Степит\\UpVote\\obj\\",
+        "outputPath": "C:\\Степит\\UpVote\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
