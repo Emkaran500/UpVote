@@ -5,10 +5,10 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using ConfigurationApp.Options.Connections;
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Upvote.Options;
 using UpVote.Models;
 using UpVote.Repositories.Base;
 
@@ -24,11 +24,9 @@ public class SectionDapperRepository : ISectionRepository
     public async Task CreateAsync(Section? section)
     {
         using var connection = new SqlConnection(this.connectionString);
-        var format = "yyyy-MM-dd";
         section.CreationDate = DateTime.Now;
-        var stringDate = DateTime.Now.Date.ToString(format);
 
-        await connection.ExecuteAsync($"Insert into Sections([Name], [CreationDate]) Values ('{section.Name ?? null}', '{stringDate}')");
+        await connection.ExecuteAsync($"Insert into Sections([Name], [CreationDate]) Values ('{section.Name ?? null}', '{section.CreationDate.ToString()}')");
     }
 
     public async Task DeleteAsync(int? id)

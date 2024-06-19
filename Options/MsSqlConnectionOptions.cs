@@ -1,9 +1,8 @@
 using System.Text;
-using UpVote.Options.Connections.Base;
 
-namespace ConfigurationApp.Options.Connections;
+namespace Upvote.Options;
 
-public class MsSqlConnectionOptions : IConnectionOptions
+public class MsSqlConnectionOptions
 {
     public string? Database { get; set; }
     public string? Server { get; set; }

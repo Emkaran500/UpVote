@@ -3,7 +3,9 @@ using UpVote.Models;
 using UpVote.Repositories.Base;
 using UpVote.Services.Base;
 using UpVote.Services;
-using ConfigurationApp.Options.Connections;
+using UpVote.Middlewares;
+using Upvote.Options;
+using UpVote.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,10 +18,15 @@ var msSqlConnectionSection = builder.Configuration
 
 builder.Services.Configure<MsSqlConnectionOptions>(msSqlConnectionSection);
 
+var loggingSettings = builder.Configuration.GetSection("MiddlewareSettings");
+builder.Services.Configure<LoggingSettings>(loggingSettings);
+
 builder.Services.AddTransient<IDiscussionRepository, DiscussionJsonRepository>();
 builder.Services.AddScoped<IDiscussionService, DiscussionService>();
 builder.Services.AddTransient<ISectionRepository, SectionDapperRepository>();
 builder.Services.AddScoped<ISectionService, SectionService>();
+builder.Services.AddTransient<ILoggingRepository, LoggingDapperRepository>();
+builder.Services.AddTransient<LoggingMiddleware>();
 
 var app = builder.Build();
 
@@ -37,6 +44,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseMiddleware<LoggingMiddleware>();
 
 app.MapControllerRoute(
     name: "default",

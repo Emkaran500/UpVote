@@ -1,18 +1,35 @@
+using Microsoft.Extensions.Options;
+using UpVote.Models;
+using UpVote.Options;
+using UpVote.Repositories.Base;
+
 namespace UpVote.Middlewares;
 
 public class LoggingMiddleware : IMiddleware
 {
-    private readonly IConfiguration configuration;
-    private readonly RequestDelegate next;
+    private readonly ILoggingRepository loggingRepository;
+    private LoggingSettings loggingSettings;
 
-    public LoggingMiddleware(IConfiguration configuration, RequestDelegate next)
+    public LoggingMiddleware(IOptionsMonitor<LoggingSettings> loggingMonitor, ILoggingRepository loggingRepository)
     {
-        this.configuration = configuration;
-        this.next = next;
+        this.loggingSettings = loggingMonitor.CurrentValue;
+        this.loggingRepository = loggingRepository;
     }
     
-    public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+    public async Task InvokeAsync(HttpContext httpContext, RequestDelegate next)
     {
-        
+        if (loggingSettings.UseLogging == false)
+        {
+            await next.Invoke(httpContext);
+            return;
+        }
+
+        var newLog = new Log();
+
+        await this.loggingRepository.AddStartTimeToLogAsync(newLog);
+        await next.Invoke(httpContext);
+        await this.loggingRepository.CreateLogAsync(httpContext, newLog);
+        await this.loggingRepository.AddEndTimeToLogAsync(loggingRepository, newLog);
+        await this.loggingRepository.AddLogToDbAsync(newLog);
     }
 }
