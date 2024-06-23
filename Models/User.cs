@@ -1,4 +1,4 @@
-namespace Upvote.Models;
+namespace UpVote.Models;
 
 public class User
 {

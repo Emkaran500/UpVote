@@ -29,7 +29,7 @@ builder.Services.AddTransient<ILoggingRepository, LoggingDapperRepository>();
 builder.Services.AddTransient<LoggingMiddleware>();
 
 builder.Services.AddDbContext<UpVoteDbContext>(dbContextOptionsBuilder => {
-    var connectionString = "Server=myServerAddress;Database=myDataBase;Trusted_Connection=True;";
+    var connectionString = "Server=localhost;Database=UpVoteDb;Trusted_Connection=True;TrustServerCertificate=True;";
     dbContextOptionsBuilder.UseSqlServer(connectionString);
 });
 
@@ -55,5 +55,10 @@ app.UseMiddleware<LoggingMiddleware>();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+var scope = app.Services.CreateScope();
+var dbContext = scope.ServiceProvider.GetRequiredService<UpVoteDbContext>();
+await dbContext.Database.MigrateAsync();
+await dbContext.Database.EnsureCreatedAsync();
 
 app.Run();

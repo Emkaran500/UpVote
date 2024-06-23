@@ -1,5 +1,3 @@
-using Upvote.Models;
-
 namespace UpVote.Models;
 
 public class Discussion

@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
+using UpVote.Data;
 using UpVote.Models;
 using UpVote.Repositories.Base;
 using UpVote.Services.Base;
@@ -10,10 +11,12 @@ namespace UpVote.Controllers;
 public class SectionController : Controller
 {
     private readonly ISectionService sectionService;
+    private readonly UpVoteDbContext dbContext;
 
-    public SectionController(ISectionService sectionService)
+    public SectionController(ISectionService sectionService, UpVoteDbContext dbContext)
     {
         this.sectionService = sectionService;
+        this.dbContext = dbContext;
     }
 
     [HttpGet("/[controller]")]
