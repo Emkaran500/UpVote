@@ -21,11 +21,13 @@ builder.Services.Configure<MsSqlConnectionOptions>(msSqlConnectionSection);
 var loggingSettings = builder.Configuration.GetSection("MiddlewareSettings");
 builder.Services.Configure<LoggingSettings>(loggingSettings);
 
-builder.Services.AddTransient<IDiscussionRepository, DiscussionJsonRepository>();
+builder.Services.AddTransient<IDiscussionRepository, DiscussionEFRepository>();
 builder.Services.AddScoped<IDiscussionService, DiscussionService>();
-builder.Services.AddTransient<ISectionRepository, SectionDapperRepository>();
+builder.Services.AddTransient<ISectionRepository, SectionEFRepository>();
 builder.Services.AddScoped<ISectionService, SectionService>();
-builder.Services.AddTransient<ILoggingRepository, LoggingDapperRepository>();
+builder.Services.AddTransient<ILoggingRepository, LoggingEFRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddTransient<IUserRepository, UserEFRepository>();
 builder.Services.AddTransient<LoggingMiddleware>();
 
 builder.Services.AddDbContext<UpVoteDbContext>(dbContextOptionsBuilder => {

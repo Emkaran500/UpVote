@@ -49,16 +49,14 @@ public class LoggingDapperRepository : ILoggingRepository
                                                                     '{newLog.HttpMethod}')");
     }
 
-    public async Task AddStartTimeToLogAsync(Log newLog)
+    public async Task AddRequestBodyAsync(HttpContext httpContext, Log newLog)
     {
-        newLog.CreationDate = DateTime.Now;
-    }
-
-    public async Task CreateLogAsync(HttpContext httpContext, Log newLog)
-    {
-        newLog.Url = httpContext.Request.GetEncodedUrl();
         var reqBody = await new StreamReader(httpContext.Request.Body, Encoding.Default).ReadToEndAsync();
         newLog.RequestBody = reqBody;
+    }
+
+    public async Task AddResponseBodyAsync(HttpContext httpContext, Log newLog)
+    {
         var originalBodyStream = httpContext.Response.Body;
         using (var responseBody = new MemoryStream())
         {
@@ -67,6 +65,16 @@ public class LoggingDapperRepository : ILoggingRepository
             newLog.ResponseBody = resBody;
             await responseBody.CopyToAsync(originalBodyStream);
         }
+    }
+
+    public async Task AddStartTimeToLogAsync(Log newLog)
+    {
+        newLog.CreationDate = DateTime.Now;
+    }
+
+    public async Task CreateLogAsync(HttpContext httpContext, Log newLog)
+    {
+        newLog.Url = httpContext.Request.GetEncodedUrl();
         
         newLog.StatusCode = httpContext.Response.StatusCode;
         newLog.HttpMethod = httpContext.Request.Method;

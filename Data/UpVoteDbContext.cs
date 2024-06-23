@@ -8,6 +8,7 @@ namespace UpVote.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Discussion> Discussions { get; set; }
         public DbSet<Section> Sections { get; set; }
+        public DbSet<Log> Logs { get; set; }
 
         public UpVoteDbContext(DbContextOptions<UpVoteDbContext> options) : base(options) {}
     }
