@@ -1,10 +1,10 @@
 using UpVote.Repositories;
-using UpVote.Models;
 using UpVote.Repositories.Base;
 using UpVote.Services.Base;
 using UpVote.Services;
 using UpVote.Middlewares;
-using Upvote.Options;
+using Microsoft.EntityFrameworkCore;
+using UpVote.Data;
 using UpVote.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +27,11 @@ builder.Services.AddTransient<ISectionRepository, SectionDapperRepository>();
 builder.Services.AddScoped<ISectionService, SectionService>();
 builder.Services.AddTransient<ILoggingRepository, LoggingDapperRepository>();
 builder.Services.AddTransient<LoggingMiddleware>();
+
+builder.Services.AddDbContext<UpVoteDbContext>(dbContextOptionsBuilder => {
+    var connectionString = "Server=myServerAddress;Database=myDataBase;Trusted_Connection=True;";
+    dbContextOptionsBuilder.UseSqlServer(connectionString);
+});
 
 var app = builder.Build();
 

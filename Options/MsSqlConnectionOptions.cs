@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Upvote.Options;
+namespace UpVote.Options;
 
 public class MsSqlConnectionOptions
 {
@@ -9,6 +9,7 @@ public class MsSqlConnectionOptions
     public string? UserId { get; set; }
     public string? Password { get; set; }
     public string? Trusted_Connection { get; set; }
+    public string? Options { get; set; }
 
     public string ConnectionString {
         get {
@@ -33,6 +34,11 @@ public class MsSqlConnectionOptions
             else
             {
                 throw new Exception("Not enough credentials to access Db!");
+            }
+
+            if (string.IsNullOrWhiteSpace(this.Options) == false)
+            {
+                connectionString.Append(Options);
             }
 
             

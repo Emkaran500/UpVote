@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Upvote.Options;
 using UpVote.Models;
+using UpVote.Options;
 using UpVote.Repositories.Base;
 
 public class SectionDapperRepository : ISectionRepository

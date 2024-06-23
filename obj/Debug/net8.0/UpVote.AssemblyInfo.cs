@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UpVote")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+95b2e91ab4d3787b31ebaa1d54ce59385cd663c6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+61c14780a90cd6e7cdfa502cb3909bd245c46aae")]
 [assembly: System.Reflection.AssemblyProductAttribute("UpVote")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UpVote")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
