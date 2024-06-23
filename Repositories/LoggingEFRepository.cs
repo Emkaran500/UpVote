@@ -10,6 +10,11 @@ public class LoggingEFRepository : ILoggingRepository
 {
     private readonly UpVoteDbContext dbContext;
 
+    public LoggingEFRepository(UpVoteDbContext dbContext)
+    {
+        this.dbContext = dbContext;
+    }
+
     public async Task AddEndTimeToLogAsync(ILoggingRepository loggingRepository, Log newLog)
     {
         newLog.EndDate = DateTime.Now;

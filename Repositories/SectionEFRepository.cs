@@ -14,7 +14,12 @@ using UpVote.Repositories.Base;
 
 public class SectionEFRepository : ISectionRepository
 {
-        private readonly UpVoteDbContext dbContext;
+    private readonly UpVoteDbContext dbContext;
+
+    public SectionEFRepository(UpVoteDbContext context)
+    {
+        this.dbContext = context;
+    }
 
     public async Task CreateAsync(Section? section)
     {

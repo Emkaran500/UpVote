@@ -9,6 +9,12 @@ using UpVote.Repositories.Base;
 public class DiscussionEFRepository : IDiscussionRepository
 {
     private readonly UpVoteDbContext dbContext;
+
+    public DiscussionEFRepository(UpVoteDbContext dbContext)
+    {
+        this.dbContext = dbContext;
+    }
+
     public async Task CreateAsync(Discussion? discussion)
     {
         if (discussion == null)
