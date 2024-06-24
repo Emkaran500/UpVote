@@ -28,8 +28,8 @@ public class LoggingMiddleware : IMiddleware
 
         await this.loggingRepository.AddStartTimeToLogAsync(newLog);
         await this.loggingRepository.CreateLogAsync(httpContext, newLog);
-        await this.loggingRepository.AddRequestBodyAsync(httpContext, newLog);
         await next.Invoke(httpContext);
+        await this.loggingRepository.AddRequestBodyAsync(httpContext, newLog);
         await this.loggingRepository.AddResponseBodyAsync(httpContext, newLog);
         await this.loggingRepository.AddEndTimeToLogAsync(loggingRepository, newLog);
         await this.loggingRepository.AddLogToDbAsync(newLog);

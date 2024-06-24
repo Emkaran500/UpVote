@@ -12,10 +12,10 @@ public class UserEFRepository : IUserRepository
     {
         this.dbContext = context;
     }
-    
+
     public async Task<IEnumerable<User>?> GetByIdAsync(int id)
     {
-        var users = this.dbContext.Users.TakeWhile(user => user.Id == id);
+        var users = this.dbContext.Users.AsEnumerable().Take(new Range(id - 1, id));
         return users;
     }
 }

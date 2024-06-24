@@ -24,16 +24,16 @@ else {
             <div class="card-body bg-primary text-white">
                 <a href="/Discussion/Get/@discussion.Id" class="link-light" style="font-size: 20px; font-weight: bold; text-decoration: none">@discussion.Name</a>
                 <div class="card w-25 p-1 bg-warning"><label style="font-weight: bold;">Participating users: </label>
-                @if (!discussion.Users.Any() || discussion.Users == null)
+                @* @if (!discussion.Users.Any() || discussion.Users == null)
                 {
                     <span class="badge badge-secondary text-danger" style="text-align: left; font-size: .90em">NONE</span>
-                }
+                } *@
                 else
                 {
-                    @foreach (var user in discussion.Users)
+                    @* @foreach (var user in discussion.Users)
                     {
                         <span class="badge badge-secondary" style="text-align: left; font-size: .90em">@user.Nickname</span>
-                    }
+                    } *@
                 }
                 </div>
                 

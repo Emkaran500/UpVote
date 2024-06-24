@@ -28,6 +28,10 @@ builder.Services.AddScoped<ISectionService, SectionService>();
 builder.Services.AddTransient<ILoggingRepository, LoggingEFRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddTransient<IUserRepository, UserEFRepository>();
+builder.Services.AddScoped<IUserDiscussionService, UserDiscussionService>();
+builder.Services.AddTransient<IUserDiscussionRepository, UserDiscussionEFRepository>();
+builder.Services.AddScoped<IDiscussionSectionService, DiscussionSectionService>();
+builder.Services.AddTransient<IDiscussionSectionRepository, DiscussionSectionEFRepository>();
 builder.Services.AddTransient<LoggingMiddleware>();
 
 builder.Services.AddDbContext<UpVoteDbContext>(dbContextOptionsBuilder => {

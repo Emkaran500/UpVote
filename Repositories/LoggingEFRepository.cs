@@ -23,6 +23,7 @@ public class LoggingEFRepository : ILoggingRepository
     public async Task AddLogToDbAsync(Log newLog)
     {
         await this.dbContext.Logs.AddAsync(newLog);
+        this.dbContext.SaveChanges();
     }
 
     public async Task AddStartTimeToLogAsync(Log newLog)

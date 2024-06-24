@@ -10,18 +10,18 @@ namespace UpVote.Controllers;
 public class DiscussionController : Controller
 {
     private readonly IDiscussionService discussionService;
-    private readonly IDiscussionRepository discussionRepository;
+    private readonly IUserDiscussionService userDiscussionService;
 
-    public DiscussionController(IDiscussionService discussionService, IDiscussionRepository discussionRepository)
+    public DiscussionController(IDiscussionService discussionService, IUserDiscussionService userDiscussionService)
     {
-        this.discussionRepository = discussionRepository;
         this.discussionService = discussionService;
+        this.userDiscussionService = userDiscussionService;
     }
 
     [HttpGet("/[controller]")]
     public async Task<IActionResult> Index()
     {
-        var discussion = await discussionRepository.GetAllAsync();
+        var discussion = await discussionService.GetAllDiscussionsAsync();
 
         return base.View(discussion);
     }
@@ -30,7 +30,8 @@ public class DiscussionController : Controller
     [HttpGet("[controller]/[action]/{id}")]
     public async Task<IActionResult> GetById(int id)
     {
-        var discussion = await discussionRepository.GetByIdAsync(id);
+        var discussion = await discussionService.GetDiscussionByIdAsync(id);
+        base.ViewBag.Users = await this.userDiscussionService.GetAllUsersFromDiscussionAsync(id, nameof(Discussion));
 
         return base.View("Index", discussion);
     }

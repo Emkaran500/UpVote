@@ -28,13 +28,14 @@ public class DiscussionEFRepository : IDiscussionRepository
 
     public async Task<IEnumerable<Discussion>?> GetAllAsync()
     {
-        var discussions = this.dbContext.Discussions.TakeWhile(discussion => true);
+        var discussions = this.dbContext.Discussions.AsEnumerable();
         return discussions;
     }
 
     public async Task<IEnumerable<Discussion>?> GetByIdAsync(int id)
     {
-        var discussions = this.dbContext.Discussions.TakeWhile(discussion => discussion.Id == id);
+        var discussions = this.dbContext.Discussions.AsEnumerable().Take(new Range(id - 1, id));
+        System.Console.WriteLine(discussions);
         return discussions;
     }
 }

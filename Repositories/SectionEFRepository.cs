@@ -45,13 +45,13 @@ public class SectionEFRepository : ISectionRepository
 
     public async Task<IEnumerable<Section>?> GetAllAsync()
     {
-        var sections = this.dbContext.Sections.TakeWhile(section => true);
+        var sections = this.dbContext.Sections.AsEnumerable();
         return sections;
     }
 
     public async Task<IEnumerable<Section>?> GetByIdAsync(int id)
     {
-        var sections = this.dbContext.Sections.TakeWhile(section => section.Id == id);
+        var sections = this.dbContext.Sections.AsEnumerable().Take(new Range(id - 1, id));
         return sections;
     }
 

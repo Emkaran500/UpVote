@@ -1,5 +1,6 @@
 namespace UpVote.Services;
 
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UpVote.Models;
 using UpVote.Repositories.Base;
@@ -19,5 +20,17 @@ public class DiscussionService : IDiscussionService
         ArgumentNullException.ThrowIfNullOrEmpty(newDiscussion.Name);
 
         await this.discussionRepository.CreateAsync(newDiscussion);
+    }
+
+    public async Task<IEnumerable<Discussion>?> GetAllDiscussionsAsync()
+    {
+        return await this.discussionRepository.GetAllAsync();
+    }
+
+    public async Task<IEnumerable<Discussion>?> GetDiscussionByIdAsync(int? id)
+    {
+        ArgumentNullException.ThrowIfNull(id);
+
+        return await this.discussionRepository.GetByIdAsync(id.Value);
     }
 }
