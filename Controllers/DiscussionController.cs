@@ -22,6 +22,7 @@ public class DiscussionController : Controller
     public async Task<IActionResult> Index()
     {
         var discussion = await discussionService.GetAllDiscussionsAsync();
+        base.ViewBag.Users = null;
 
         return base.View(discussion);
     }
@@ -31,7 +32,8 @@ public class DiscussionController : Controller
     public async Task<IActionResult> GetById(int id)
     {
         var discussion = await discussionService.GetDiscussionByIdAsync(id);
-        base.ViewBag.Users = await this.userDiscussionService.GetAllUsersFromDiscussionAsync(id, nameof(Discussion));
+        var users = await this.userDiscussionService.GetAllUsersFromDiscussionAsync(id, nameof(UpVote.Models.User));
+        base.ViewBag.Users = users is not null && users.Any() ? users : null;
 
         return base.View("Index", discussion);
     }

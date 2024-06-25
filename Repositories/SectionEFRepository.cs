@@ -51,7 +51,7 @@ public class SectionEFRepository : ISectionRepository
 
     public async Task<IEnumerable<Section>?> GetByIdAsync(int id)
     {
-        var sections = this.dbContext.Sections.AsEnumerable().Take(new Range(id - 1, id));
+        var sections = this.dbContext.Sections.AsEnumerable().Where(section => section.Id == id);
         return sections;
     }
 
@@ -61,7 +61,7 @@ public class SectionEFRepository : ISectionRepository
         if (searchedSection != null)
         {
             searchedSection = section;
-            this.dbContext.Sections.Update(searchedSection);
+            this.dbContext.Sections.Update(section);
         }
 
         return this.dbContext.SaveChanges();

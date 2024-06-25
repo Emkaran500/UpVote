@@ -20,19 +20,35 @@
 else {
     foreach (var Section in Model)
     {
-        if (Model.Count() == 1)
+        @if (ViewBag.Count == 1)
         {
-            <a asp-route="UpdateSection" asp-route-id=@Section.Id class="link-info" style="font-size: 20px; font-weight: bold; text-decoration: none; padding: 5px">Edit section</a>
+            <div>
+                <a asp-route="UpdateSection" asp-route-id=@Section.Id class="link-info" style="font-size: 20px; font-weight: bold; text-decoration: none; padding: 5px">Edit section</a>
+            </div>
         }
+
         <div class="card my-3 shadow">
             <div class="card-body bg-primary text-white">
                 <a href="/Section/Get/@Section.Id" class="link-light" style="font-size: 20px; font-weight: bold; text-decoration: none">@Section.Name</a>
             </div>
         </div>
-        <hr/>
-        if (Model.Count() == 1)
+        @if (ViewBag.Count == 1)
         {
+            <div class="card w-25 p-1 bg-warning"><label style="font-weight: bold;">Discussions: </label>
+                @if (ViewBag.Discussions == null)
+                {
+                    <span class="badge badge-secondary text-danger" style="text-align: left; font-size: .90em">NONE</span>
+                }
+                else
+                {
+                    @foreach (var discussion in ViewBag.Discussions)
+                    {
+                        <span class="badge badge-secondary" style="text-align: left; font-size: .90em">@discussion.Name</span>
+                    }
+                }
+            </div>
             <a asp-route="DeleteSection" asp-route-id=@Section.Id class="link-danger" style="font-size: 20px; font-weight: bold; text-decoration: none; padding: 5px">Delete section</a>
+            <hr/>
         }
     }
 }

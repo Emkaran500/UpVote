@@ -6,29 +6,29 @@ using UpVote.Models;
 using UpVote.Repositories.Base;
 using UpVote.Services.Base;
 
-public class UserDiscussionService : IUserDiscussionService
+public class UserDiscussionService<T> : IUserDiscussionService
 {
-    private readonly IUserDiscussionRepository userDiscussionRepository;
+    private readonly IUserDiscussionRepository<T> userDiscussionRepository;
 
-    public UserDiscussionService(IUserDiscussionRepository userDiscussionRepository)
+    public UserDiscussionService(IUserDiscussionRepository<T> userDiscussionRepository)
     {
         this.userDiscussionRepository = userDiscussionRepository;
     }
 
-    public async Task<IEnumerable<UserDiscussion>?> GetAllUsersFromDiscussionAsync(int? id, string? foreignName)
+    public async Task<IEnumerable<User>?> GetAllUsersFromDiscussionAsync(int? id, string? foreignName)
     {
         ArgumentNullException.ThrowIfNull(id);
         ArgumentNullException.ThrowIfNull(foreignName);
 
         var users = await this.userDiscussionRepository.GetByForeignIdAsync(id.Value, foreignName);
-        return users;
+        return (IEnumerable<User>?)users;
     }
 
-    public async Task<IEnumerable<UserDiscussion>?> GetAllDiscussionsFromUserAsync(int? id, string? foreignName)
+    public async Task<IEnumerable<Discussion>?> GetAllDiscussionsFromUserAsync(int? id, string? foreignName)
     {
         ArgumentNullException.ThrowIfNull(id);
 
-        var users = await this.userDiscussionRepository.GetByForeignIdAsync(id.Value, foreignName);
-        return users;
+        var discussions = await this.userDiscussionRepository.GetByForeignIdAsync(id.Value, foreignName);
+        return (IEnumerable<Discussion>?)discussions;
     }
 }

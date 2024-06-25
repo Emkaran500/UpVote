@@ -1,6 +1,8 @@
+using System.Collections;
+
 namespace UpVote.Repositories.Base;
 
-public interface IGetByForeignIdAsync<TEntity>
+public interface IGetByForeignIdAsync<T>
 {
-    Task<IEnumerable<TEntity>?> GetByForeignIdAsync(int id, string foreignName);
+    Task<T?> GetByForeignIdAsync(int id, string foreignName);
 }

@@ -15,7 +15,7 @@ public class UserEFRepository : IUserRepository
 
     public async Task<IEnumerable<User>?> GetByIdAsync(int id)
     {
-        var users = this.dbContext.Users.AsEnumerable().Take(new Range(id - 1, id));
+        var users = this.dbContext.Users.AsEnumerable().Where(user => user.Id == id);
         return users;
     }
 }

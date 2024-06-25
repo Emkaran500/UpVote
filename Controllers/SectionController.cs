@@ -11,18 +11,20 @@ namespace UpVote.Controllers;
 public class SectionController : Controller
 {
     private readonly ISectionService sectionService;
-    private readonly UpVoteDbContext dbContext;
+    private readonly IDiscussionSectionService discussionSectionService;
 
-    public SectionController(ISectionService sectionService, UpVoteDbContext dbContext)
+    public SectionController(ISectionService sectionService, IDiscussionSectionService discussionSectionService)
     {
         this.sectionService = sectionService;
-        this.dbContext = dbContext;
+        this.discussionSectionService = discussionSectionService;
     }
 
     [HttpGet("/[controller]")]
     public async Task<IActionResult> Index()
     {
         var sections = await sectionService.GetAllSectionsAsync();
+        base.ViewBag.Discussions = null;
+        base.ViewBag.Count = sections.Count();
 
         return base.View(sections);
     }
@@ -32,6 +34,9 @@ public class SectionController : Controller
     public async Task<IActionResult> GetById(int id)
     {
         var section = await sectionService.GetSectionByIdAsync(id);
+        var discussions = await this.discussionSectionService.GetAllDiscussionsFromSectionAsync(id, nameof(Discussion));
+        base.ViewBag.Discussions = discussions is not null && discussions.Any() ? discussions : null;
+        base.ViewBag.Count = section.Count();
 
         return base.View("Index", section);
     }

@@ -34,8 +34,7 @@ public class DiscussionEFRepository : IDiscussionRepository
 
     public async Task<IEnumerable<Discussion>?> GetByIdAsync(int id)
     {
-        var discussions = this.dbContext.Discussions.AsEnumerable().Take(new Range(id - 1, id));
-        System.Console.WriteLine(discussions);
+        var discussions = this.dbContext.Discussions.AsEnumerable().Where(discussion => discussion.Id == id);
         return discussions;
     }
 }
